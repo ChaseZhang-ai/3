@@ -1,0 +1,28 @@
+VULCAN — third-party notice
+===========================
+
+VULCAN is an orchestration layer that reproduces and builds on ForgeKernel.
+
+Upstream base
+-------------
+  Name:     ForgeKernel — Self-Evolving Kernels Catching and Surpassing Experts and Agents
+  Authors:  OpenBMB / Tsinghua University / ModelBest (arXiv:2611.04998)
+  Source:   https://github.com/OpenBMB/ForgeKernel
+  Pin:      b2c8ae8510e02c28576808910a6b8827721ab7dc (2026-11-11)
+  License:  Apache License 2.0
+
+The upstream is NOT redistributed in this repository. `scripts/bootstrap.sh` clones it at
+the pinned commit into a gitignored `vendor/` directory. Any file under `vulcan/src/`,
+`vulcan/tests/`, `vulcan/scripts/` and `vulcan/docs/` that is not the vendored tree is
+original to this study and is covered by the repository's MIT license.
+
+Benchmark data
+--------------
+`vulcan/data/sol_execbench_b200_flashinfer.json` is collected from the public
+SOL-ExecBench API by `vulcan/scripts/fetch_board.py` and contains only published
+leaderboard figures (per-workload latencies and per-kernel scores).
+
+License texts
+-------------
+MIT (this repository): ../../LICENSE
+Apache-2.0 (upstream): see vendor/ForgeKernel/LICENSE after running bootstrap.sh
