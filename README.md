@@ -11,7 +11,7 @@ complementary rather than competing.
 | folder | base system | the question it studies | status |
 |---|---|---|---|
 | [`argus/`](argus/README.md) | **CudaForge** — a Coder/Judge loop over profiler counters | What must a generator verify, what must its search respect, and what should its judge be told? | in this repository |
-| `vulcan/` | **ForgeKernel** — architecture planning split from coding | How should a fixed budget be divided across operators and architecture hypotheses, and when is a gain real? | sibling study, currently maintained in [ChaseZhang-ai/RSI-Kernel-Tune](https://github.com/ChaseZhang-ai/RSI-Kernel-Tune); to be added here as `vulcan/` |
+| `vulcan/` | **ForgeKernel** — architecture planning split from coding | How should a fixed budget be divided across operators and architecture hypotheses, and when is a gain real? | in this repository |
 
 Both reproduce a different base on purpose. ForgeKernel separates architectural planning from
 coding and promotes accepted kernels into the next reference; CudaForge is a compact loop with
@@ -45,6 +45,16 @@ python3 -m argus.cli selftest
 python3 -m argus.cli hacklab --seed 1      # which verification gate accepts which kernel
 python3 -m argus.cli ab --seeds 6 --evals 40
 bash scripts/local_validate.sh             # the above + 53 unit tests
+
+# VULCAN
+cd vulcan
+export PYTHONPATH=src
+python3 -m vulcan selftest
+python3 -m vulcan stats                    # headroom ranking of the 26 board kernels
+python3 -m vulcan plan --hours 200         # score-aware budget allocation + latency targets
+python3 -m vulcan transfer --target best --ratio 1.8   # B300 dev targets -> B200 scores
+python3 -m vulcan demo --hours 200 --seed 7  # mock A/B of allocation vs portfolio
+bash scripts/local_validate.sh             # the above + 94 unit tests
 ```
 
 The planned hardware protocols are written down before any GPU time is requested:
@@ -58,8 +68,15 @@ The planned hardware protocols are written down before any GPU time is requested
   from the base loop and what is added.
 - [`argus/docs/design/findings.md`](argus/docs/design/findings.md) — the findings and their
   current status.
+- [`vulcan/README.md`](vulcan/README.md) — the same, for the ForgeKernel study: what is
+  reproduced, what is added, and what is validated on CPU versus pending on hardware.
+- [`vulcan/ARCHITECTURE.md`](vulcan/ARCHITECTURE.md) — the paper-to-code map of the reproduced
+  loop and the reproduction procedure.
+- [`vulcan/docs/LEADERBOARD_ANALYSIS.md`](vulcan/docs/LEADERBOARD_ANALYSIS.md) — the exact
+  scoring rule recovered from the board's public API and where the headroom is.
 
 ## License
 
 MIT; see [`LICENSE`](LICENSE). The upstreams each study builds on keep their own licenses and
-are not redistributed here.
+are not redistributed here — each study pins its base's commit in its `scripts/bootstrap.sh`
+(and, for `vulcan/`, in [`vulcan/NOTICE`](vulcan/NOTICE)).

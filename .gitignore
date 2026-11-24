@@ -1,4 +1,4 @@
-# vendored upstreams (created by argus/scripts/bootstrap.sh) and local caches
+# vendored upstreams (created by each study's scripts/bootstrap.sh) and local caches
 vendor/
 __pycache__/
 *.pyc
@@ -7,3 +7,8 @@ __pycache__/
 run/
 results/
 ncu_tmp/
+
+# vulcan: run artifacts, submissions and generated plans
+vulcan/submissions/
+vulcan/*.plan.json
+plan.json
