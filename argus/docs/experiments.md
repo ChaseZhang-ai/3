@@ -33,7 +33,7 @@ the order to spend time in is at the end.
 
 ```bash
 # 1. upstreams
-scripts/bootstrap.sh                       # CudaForge @ eaba693f, SOL-ExecBench @ a9fa0804
+argus/scripts/bootstrap.sh                       # CudaForge @ eaba693f, SOL-ExecBench @ a9fa0804
 # 2. dataset (authoritative anchors)
 git lfs install && GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/datasets/nvidia/SOL-ExecBench
 # 3. CudaForge env (needs python>=3.11; see vendor/CudaForge/environment.yml)

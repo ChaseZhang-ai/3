@@ -1,4 +1,4 @@
-# vendored upstreams (created by scripts/bootstrap.sh) and local caches
+# vendored upstreams (created by argus/scripts/bootstrap.sh) and local caches
 vendor/
 __pycache__/
 *.pyc

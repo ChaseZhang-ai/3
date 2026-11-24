@@ -4,7 +4,7 @@
 `eaba693fa01bdafc9848334cada2d789e240ce3f` (MIT, © 2025 Zijian Zhang).
 **Paper:** *CudaForge: An Agent Framework with Hardware Feedback for CUDA Kernel
 Optimization*, arXiv:2511.01884.
-**Vendored at:** `vendor/CudaForge/` (gitignored; created by `scripts/bootstrap.sh`).
+**Vendored at:** `vendor/CudaForge/` (gitignored; created by `argus/scripts/bootstrap.sh`).
 
 ARGUS does **not** fork CudaForge. It reproduces its loop faithfully behind a driver seam,
 so the same reasoning stack can run against a deterministic CPU mock (local validation) or
@@ -52,7 +52,7 @@ in `backends/cudaforge.py`. Nothing outside `argus/` is touched.
 ### Reproduction procedure (GPU-free parts)
 
 ```bash
-scripts/bootstrap.sh                  # clones CudaForge @ eaba693f into vendor/
+argus/scripts/bootstrap.sh                  # clones CudaForge @ eaba693f into vendor/
 python3 -m argus.cli dryrun                 # exercises the adapter's prompts/parsers
 ```
 
