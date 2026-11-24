@@ -9,7 +9,7 @@ description = "Verification, attribution and population search around an agentic
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "RSI-Kernel-Tune contributors" }]
+authors = [{ name = "agentic-kernel-studies contributors" }]
 dependencies = ["numpy>=1.23"]
 
 [project.optional-dependencies]

@@ -1,14 +1,14 @@
-# Reproduction of the ForgeKernel architecture
+# The substrate loop and the VULCAN layer
 
-**Upstream:** OpenBMB/ForgeKernel — `https://github.com/OpenBMB/ForgeKernel`
+**Substrate:** OpenBMB/ForgeKernel — `https://github.com/OpenBMB/ForgeKernel`
 **Pin:** `b2c8ae8510e02c28576808910a6b8827721ab7dc` (2026-11-11), Apache-2.0
 **Paper:** *ForgeKernel: Self-Evolving Kernels Catching and Surpassing Experts and Agents*,
 arXiv:2611.04998.
 **Vendored at:** `vulcan/vendor/ForgeKernel/` (gitignored; created by `scripts/bootstrap.sh`).
 
-We reproduce the architecture by **vendoring the upstream at a fixed commit and supervising it**,
-rather than re-implementing 135k lines. This section documents what the architecture actually is,
-where each piece lives in the code, and how the VULCAN layer attaches.
+VULCAN is loop-agnostic: it wraps a generation loop rather than re-implementing one. This document
+describes the substrate it is currently validated on — the loop, where each piece lives in the
+code — and how the budget plane attaches to it.
 
 ---
 
@@ -104,10 +104,10 @@ It locks clocks (SM 1500 / memory 3996 MHz on the B200 preset) and passes the bo
 score into the eval JSON (`sol_board.{sol_score, vs_t_b}`). See
 `vendor/ForgeKernel/docs/leaderboards.md` for the authoritative description.
 
-This is the single most important thing the reproduction buys us: **our local measurements and the
+This is the single most important thing the substrate buys us: **our local measurements and the
 board's judgement use the same judge.**
 
-## 4. Reproduce it
+## 4. Bootstrap the substrate
 
 ```bash
 # 1. clone + install the pinned upstream
@@ -156,6 +156,6 @@ that adapter exists, run with upstream's own `hw_kb` and treat `kb_graph` as the
   sampling special evaluators; upstream documents which definitions it refuses (`sampling`,
   DSA top-k indexer).
 * Two boards publish `T_b`/`T_SOL` measured on *their* machine; the residual between their B200 and
-  ours remains in the score. This is a property of the board, not of the reproduction.
+  ours remains in the score. This is a property of the board, not of the substrate.
 * A host-bound multi-kernel call is unstable under any single-call stopwatch; hence SOL tasks rank
   against published `T_b`, not a timed PyTorch reference.

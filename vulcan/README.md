@@ -1,11 +1,11 @@
 # VULCAN
 
 **V**alue-of-information **U**tilization for **L**eaderboard-**C**onditioned **A**rchitecture
-search — a **N**etwork of score-aware optimizers over a reproduced ForgeKernel.
+search — a **N**etwork of score-aware optimizers around a pinned kernel-generation loop.
 
-> `vulcan/` is one of the two studies in this repository (see the root [`README.md`](../README.md);
-> the sibling study is [`argus/`](../argus/README.md)). "Vulcan" is only a name — it labels this
-> study so the two stay separable.
+> VULCAN is the **budget plane** of the system described in the root [`README.md`](../README.md);
+> its sibling plane is [`argus/`](../argus/README.md) (trust). "Vulcan" is the plane's name, not a
+> separate project.
 
 ---
 
@@ -41,21 +41,21 @@ targets the published objective.
 |---|---|---|
 | SOL Bound (unreachable ceiling) | 1.000000 | 660/660 |
 | **Golden Bridge** (rank 1) | **0.815321** | 654/660 |
-| **ForgeKernel** (rank 2, the reproduction baseline) | 0.815204 | 647/660 |
+| **ForgeKernel** (rank 2, the pinned substrate) | 0.815204 | 647/660 |
 | Scoring Baseline | 0.500000 | 0/660 |
 
 **Mean of the best public kernel per kernel = 0.819011 → already above rank 1.** Matching the
 best-known implementation on every kernel would take first place. VULCAN's orchestrator is built
 to do exactly that and then push past it.
 
-## 3. What is reproduced, and what is added
+## 3. What is inherited from the substrate, and what is new
 
-**Reproduced** (vendored, not forked): the full ForgeKernel architecture — architecture agent /
-coding agent split, milestone plans with a frozen `M0`, self-evolution over sealed references,
-and the probe-validated hardware knowledge base. See [`ARCHITECTURE.md`](ARCHITECTURE.md) for the
-paper-to-code map and the reproduction procedure.
+**Inherited** (vendored at a pin, not forked): the generation loop — the architecture-agent /
+coding-agent split, milestone plans with a frozen `M0`, self-evolution over sealed references, and
+the probe-validated hardware knowledge base. It is the substrate the budget plane wraps; see
+[`ARCHITECTURE.md`](ARCHITECTURE.md) for the map and the bootstrap procedure.
 
-**Added** (`src/vulcan/`, standard library only, no dependency on upstream at import time):
+**New** (`src/vulcan/`, standard library only, no dependency on upstream at import time):
 
 | module | what it does |
 |---|---|
@@ -117,7 +117,7 @@ No GPU, no torch, no third-party packages: Python ≥ 3.9 and the standard libra
 ```
 vulcan/
   README.md                  this file
-  ARCHITECTURE.md            reproduction of ForgeKernel: paper <-> code map + procedure
+  ARCHITECTURE.md            the substrate loop, the VULCAN layer, and how they meet
   docs/
     LEADERBOARD_ANALYSIS.md  exact scoring rule recovery + per-kernel targets
     IMPROVEMENTS.md          ranked improvement designs, evidence, risks
