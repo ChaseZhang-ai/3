@@ -10,34 +10,7 @@
 [![Hardware](https://img.shields.io/badge/Hardware-protocol%20written-yellow.svg)](docs/evaluation.md)
 [![Target](https://img.shields.io/badge/Target-SOL--ExecBench-black.svg)](vulcan/docs/LEADERBOARD_ANALYSIS.md)
 
-```text
-                      ┌──────────────────────────────────────────────────────────┐
-                      │  ONE OBJECTIVE                                           │
-                      │  S = 1 / (1 + (T − T_SOL) / (T_b − T_SOL))               │
-                      │  geometric mean over an operator's workloads,            │
-                      │  arithmetic mean over the collection                     │
-                      └───────────────────────────┬──────────────────────────────┘
-                                                  │ every decision is scored here
-        ┌─────────────────────────────────────────┴─────────────────────────────────────────┐
-        │                                                                                   │
-        │   ┌───────────────────────────────┐                     ┌───────────────────────┐   │
-        │   │ BUDGET PLANE — VULCAN         │    candidates       │ TRUST PLANE — ARGUS   │   │
-        │   │ "where should effort go?"     │ ──────────────────▶ │ "is the gain real?"   │   │
-        │   │                               │                     │                       │   │
-        │   │  score-aware allocation       │ ◀────────────────── │  verification gates   │   │
-        │   │  architecture portfolio       │ verdict+attribution │  reward-hack lab      │   │
-        │   │  cross-device transfer        │                     │  attribution search   │   │
-        │   └───────────────┬───────────────┘                     └───────────┬───────────┘   │
-        │                   │                                                 │               │
-        │                   └──────────────────┬──────────────────────────────┘               │
-        │                                      ▼                                              │
-        │                      ┌──────────────────────────────────┐   accepted + certified   │
-        │                      │ MECHANISM MEMORY                 │◀──────────────────────── │
-        │                      │ certified / refuted mechanisms   │                          │
-        │                      │ sealed reference chain           │                          │
-        │                      └──────────────────────────────────┘                          │
-        └───────────────────────────────────────────────────────────────────────────────────┘
-```
+<img src="docs/images/architecture-planes.png" alt="One objective scoring a budget plane (VULCAN) and a trust plane (ARGUS) that exchange candidates for verdicts and attributions, with a shared mechanism memory of certified and refuted mechanisms.">
 
 </div>
 
@@ -86,18 +59,7 @@ search still promotes shortcuts.
 
 A campaign is a sequence of decisions about *what to try next* and *whether to keep it*.
 
-```text
-   operator set ──▶ BUDGET PLANE ──▶ candidate architectures / implementations
-        ▲                │                          │
-        │                │ hours, targets,          ▼
-        │                │ hypotheses           TRUST PLANE
-        │                │                          │
-        │                └──────────◀───────────────┘
-        │                     verdict + attribution
-        │                          │
-        └──── MECHANISM MEMORY ◀───┘   (certified mechanisms, refuted ideas,
-                                        sealed reference chain)
-```
+<p align="center"><img src="docs/images/control-loop.png" alt="Closed loop: an operator set enters the budget plane, which proposes candidate architectures and implementations; the trust plane returns a verdict and attribution; certified mechanisms, refuted ideas and the sealed reference chain feed back through mechanism memory."></p>
 
 Each round writes two kinds of state: an **allocation** (which operator, how many hours, which
 architecture hypotheses, what latency target) and a **verdict** (accepted, rejected, reverted,
