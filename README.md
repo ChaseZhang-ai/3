@@ -13,7 +13,7 @@
 <!-- Diagrams are served via jsDelivr (gcore mirror) because raw.githubusercontent.com is
      unreachable on some networks; the files live in docs/images/ and the URL is pinned to a
      commit — bump the SHA in both image URLs when the figures change. -->
-<img src="https://gcore.jsdelivr.net/gh/zixinzenith/agentic-kernel-studies@5602cd4/docs/images/architecture-planes.png" alt="One objective scoring a budget plane (VULCAN) and a trust plane (ARGUS) that exchange candidates for verdicts and attributions, with a shared mechanism memory of certified and refuted mechanisms.">
+<img src="https://gcore.jsdelivr.net/gh/zixinzenith/agentic-kernel-studies@c35400c/docs/images/architecture-planes.png" width="740" alt="One objective scoring a budget plane (VULCAN) and a trust plane (ARGUS) that exchange candidates for verdicts and attributions, with a shared mechanism memory of certified and refuted mechanisms.">
 
 </div>
 
@@ -62,7 +62,7 @@ search still promotes shortcuts.
 
 A campaign is a sequence of decisions about *what to try next* and *whether to keep it*.
 
-<p align="center"><img src="https://gcore.jsdelivr.net/gh/zixinzenith/agentic-kernel-studies@5602cd4/docs/images/control-loop.png" alt="Closed loop: an operator set enters the budget plane, which proposes candidate architectures and implementations; the trust plane returns a verdict and attribution; certified mechanisms, refuted ideas and the sealed reference chain feed back through mechanism memory."></p>
+<p align="center"><img src="https://gcore.jsdelivr.net/gh/zixinzenith/agentic-kernel-studies@c35400c/docs/images/control-loop.png" width="840" alt="Closed loop: an operator set enters the budget plane, which proposes candidate architectures and implementations; the trust plane returns a verdict and attribution; certified mechanisms, refuted ideas and the sealed reference chain feed back through mechanism memory."></p>
 
 Each round writes two kinds of state: an **allocation** (which operator, how many hours, which
 architecture hypotheses, what latency target) and a **verdict** (accepted, rejected, reverted,
